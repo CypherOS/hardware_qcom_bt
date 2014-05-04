@@ -63,8 +63,7 @@ endif #WIFI_BT_STATUS_SYNC
 
 LOCAL_SHARED_LIBRARIES := \
         libcutils \
-        liblog \
-        libbtnv
+        liblog
 
 LOCAL_HEADER_LIBRARIES := \
         libutils_headers
@@ -81,7 +80,11 @@ else
 LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)
 endif
 
+ifneq ($(QCPATH),)
 LOCAL_CFLAGS += -DBT_NV_SUPPORT
+LOCAL_SHARED_LIBRARIES += libbtnv
+endif
+
 LOCAL_CFLAGS += -Wno-unused-variable
 LOCAL_CFLAGS += -Wno-unused-label
 LOCAL_CFLAGS += -Wno-user-defined-warnings
